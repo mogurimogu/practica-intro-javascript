@@ -40,7 +40,7 @@ function partido(equipos){
 
     const partido = {
         ganador : '',
-        goleada : 0
+        goleada : -1 //al setearlo a -1 hace que el primer partido no entre en la condición de volver a jugar
     }
 
     const juego = (jugadores) =>{
