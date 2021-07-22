@@ -1,16 +1,16 @@
-const goles = () => {return Math.floor(Math.random() * 10)};
+import {
+    arrays,
+    puntos
+} from "./utils/index.js";
+puntos();
+arrays();
 
-//Mezcla Array
-const shuffledArr = array => array.map(a => ({ sort: Math.random(), value: a })).sort((a, b) => a.sort - b.sort).map(a => a.value);
+const euroTeams = ['España', 'Francia', 'Portugal', 'Alemania', 'Italia', 'Inglaterra', 'Finlandia', 'Grecia', 'Islandia', 'Noruega', 'Rusia', 'Suiza', 'Suecia', 'Bélgica', 'Dinamarca', 'Croacia', 'Irlanda', 'Lituania', 'Escocia', 'Serbia', 'Luxemburgo', 'Austria', 'Andorra', 'Malta'];
 
+const playoffTeams = euroTeams.shuffle().slice(0, 16);
 
-//const euroTeams = ['España', 'Francia', 'Portugal', 'Alemania', 'Italia', 'Inglaterra', 'Finlandia', 'Grecia', 'Islandia', 'Noruega', 'Rusia', 'Suiza', 'Suecia', 'Bélgica', 'Dinamarca', 'Croacia', 'Irlanda', 'Lituania', 'Escocia', 'Serbia', 'Luxemburgo', 'Austria', 'Andorra', 'Malta'];
-
-const playoffTeams = ['España', 'Francia', 'Portugal', 'Alemania', 'Italia', 'Inglaterra', 'Finlandia', 'Grecia', 'Islandia', 'Noruega', 'Rusia', 'Suiza', 'Suecia', 'Bélgica', 'Dinamarca', 'Croacia'];
-const randomPlayoffTeams = shuffledArr(playoffTeams)
-
-const octavosA = [randomPlayoffTeams.slice(0, 8)];
-const octavosB = [randomPlayoffTeams.slice(8, 16)];
+const octavosA = playoffTeams.slice(0, 8);
+const octavosB = playoffTeams.slice(8, 16);
 
 //Los 8 ganadores de los octavos irán aquí
 const cuartosA = [];
@@ -20,11 +20,51 @@ const cuartosB = [];
 const semifinalA = [];
 const semifinalB = [];
 
-//TODO Vamos a hacer una clase constructora para estadisticas de equipo estableciendo los valores iniciales a 0
-//TODO Vamos a hacer una clase constructora para los partidos
-//TODO Por cada grupo de 2 hay que simular una partida con valores random
 
+console.log(`
+##########################################
+#########  COMIENZA LA EUROCOPA  #########
+##########################################
 
-console.log('Comienza el torneo')
-console.log(`Estas son las selecciones del grupo Octavos A: ${octavosA}`);
-console.log(`Estas son las selecciones del grupo Octavos B: ${octavosB}`);
+En el GRUPO A juega: ${octavosA}
+En el GRUPO B juega: ${octavosB}
+
+`)
+
+const partido1 = ['España', 'Portugal']
+
+//TODO refactorizar para crear una clase
+
+//funcion que permite jugar una partida
+function partido(equipos){
+
+    const partido = {
+        ganador : '',
+        goleada : 0
+    }
+
+    const juego = (jugadores) =>{
+        for(let jugador of jugadores){
+
+            partido[jugador] = puntos()
+    
+            if(partido[jugador] > partido.goleada){
+                partido.ganador = jugador;
+                partido.goleada = partido[jugador];
+            }else if(partido[jugador] === partido.goleada){
+                juego(jugadores)
+            }
+        }
+    }
+
+    juego(equipos);
+
+    //TODO despues de estose va al array de la siguiente ronda
+
+    console.log(`${equipos[0]} ${partido[equipos[0]]} - ${equipos[1]} ${partido[equipos[1]]}
+    Gana ${partido.ganador}.
+    `);
+
+}
+
+partido(partido1)
