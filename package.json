@@ -1,0 +1,20 @@
+{
+  "name": "practica-intro-javascript",
+  "version": "1.0.0",
+  "description": "La eurocopa la disputan 24 equipos nacionales de fútbol y consta de dos fases: la fase de grupos\r y la fase de eliminatorias.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mogurimogu/practica-intro-javascript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mogurimogu/practica-intro-javascript/issues"
+  },
+  "homepage": "https://github.com/mogurimogu/practica-intro-javascript#readme",
+  "type": "module"
+}
