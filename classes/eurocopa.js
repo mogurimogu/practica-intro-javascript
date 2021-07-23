@@ -16,13 +16,18 @@ export default class Eurocopa {
         const octavos = {
             grupoA: {
                 participantes: equipos.slice(0, 8),
-                teamMatch: this.teamMatch(this.participantes)
+                teamMatch: [],
+                resultados: []
             },
             grupoB: {
                 participantes: equipos.slice(8, 16),
-                teamMatch: this.teamMatch(this.participantes)
+                teamMatch: [],
+                resultados: []
             }
         }
+
+        octavos.grupoA.teamMatch = this.teamMatch(octavos.grupoA.participantes)
+        octavos.grupoB.teamMatch = this.teamMatch(octavos.grupoB.participantes)
         this.fases.octavos = Object.assign(octavos)
     }
 
