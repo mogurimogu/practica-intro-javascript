@@ -16,7 +16,7 @@ export const arrays = () =>{
 	//Creador de partidos
 	Array.prototype.teamMatch = () =>{
 		for(let i = 0; i < this.length; i += 2){
-			console.log(this.slice(i, i+2));
+			this.slice(i, i+2)
 		}
 	}
 }
