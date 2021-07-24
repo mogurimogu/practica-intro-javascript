@@ -1,7 +1,8 @@
 import {
-    arrays
+    arrays, puntos
 } from "../utils/index.js";
 arrays();
+puntos();
 
 export default class Eurocopa {
     constructor(participantes, fases = {}) {
@@ -12,47 +13,62 @@ export default class Eurocopa {
 
     octavos(equipos) {
         equipos = equipos.shuffle() // Mezcla aleatoria de equipos
-        
+
         const octavos = {
             grupoA: {
                 participantes: equipos.slice(0, 8),
-                teamMatch: [],
+                partidos: [],
                 resultados: []
             },
             grupoB: {
                 participantes: equipos.slice(8, 16),
-                teamMatch: [],
+                partidos: [],
                 resultados: []
             }
         }
 
-        octavos.grupoA.teamMatch = this.teamMatch(octavos.grupoA.participantes)
-        octavos.grupoB.teamMatch = this.teamMatch(octavos.grupoB.participantes)
+        octavos.grupoA.partidos = this.teamMatch(octavos.grupoA.participantes)
+        octavos.grupoB.partidos = this.teamMatch(octavos.grupoB.participantes)
         this.fases.octavos = Object.assign(octavos)
+
+        this.partido(octavos.grupoA.partidos)
     }
 
-    teamMatch(participantes){
+    teamMatch(participantes) {
         let teamMatch = []
-        for(let i = 0; participantes.length > i; i+=2){
-            teamMatch = [...teamMatch, participantes.slice(i, i+2)]
+        for (let i = 0; participantes.length > i; i += 2) {
+            teamMatch = [...teamMatch, participantes.slice(i, i + 2)]
         }
         return teamMatch
     }
 
+
+    //#####################################################################A partir de aquí hacemos las jugadas#######################################################
+
+    
+    partido(partidos){
+        for (const partido of partidos) {
+            this.juego(partido)
+        }
+    }
+
+    juego(partido) {
+        let resultados = {}
+        let ganador = ''
+        let puntuacionMaximaActual = -1; //el partido no ha empezado y se establece -1 para que no haya conflicto a la hora de contar puntos
+
+
+        for (let participante of partido) {
+            const goles = puntos()
+            resultados = {...resultados, [participante]: goles}
+
+            if (goles > puntuacionMaximaActual) {
+                ganador = participante;
+                puntuacionMaximaActual = goles;
+            } else if (resultados[participante] === puntuacionMaximaActual) {
+                this.juego(partido)
+            }
+        }        
+    }
+
 }
-
-
-
-
-
-
-
-// const lerucopa = {
-//     participantes: [],
-//     fases: {
-//         octavosA: {
-//             participantes: [],
-//             partidos: [ {españa: 1, portugal: 0}, {francia: 2, alemania: 1} ]
-//         }
-//     }
-// }
