@@ -22,4 +22,5 @@ export const arrays = () =>{
 }
 
 //he creado un máximo de 7 goles para que no haya un exceso de puntos
-export const puntos = () => {return Math.floor(Math.random() * 8)};
+export const puntos = () => {return Math.floor(Math.random() * 10)};
+
