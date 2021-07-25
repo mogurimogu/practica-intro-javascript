@@ -12,7 +12,7 @@ const participantesEuro = new Eurocopa(euroTeams.shuffle().slice(0, 16));
 
 
 console.log('####################################################')
-console.log('--------------- Comienza la Eurocopa ---------------')
+console.log('---------------- Comienza el torneo ----------------')
 console.log('####################################################')
 console.log('')
 
@@ -30,6 +30,13 @@ console.log('---------------------- Grupo B ---------------------')
 
 console.log(participantesEuro.fases.octavos.grupoB.resultados)
 
+console.log('')
+console.log('se clasifican:')
+console.log('--------------')
+console.log(`${participantesEuro.fases.octavos.clasificados}`)
+
+
+
 
 
 
@@ -46,6 +53,10 @@ console.log('---------------------- Grupo B ---------------------')
 
 console.log(participantesEuro.fases.cuartos.grupoB.resultados)
 
+console.log('')
+console.log('se clasifican:')
+console.log('--------------')
+console.log(`${participantesEuro.fases.cuartos.clasificados}`)
 
 
 
@@ -62,8 +73,11 @@ console.log('---------------------- Grupo B ---------------------')
 
 console.log(participantesEuro.fases.semifinal.grupoB.resultados)
 
+console.log('')
+console.log('Pasan a la final:')
+console.log('-----------------')
 
-
+console.log(`${participantesEuro.fases.semifinal.clasificados}`)
 
 
 console.log('')

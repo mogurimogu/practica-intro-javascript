@@ -34,7 +34,10 @@ export default class Eurocopa {
 
         this.fases.octavos = Object.assign(octavos)
 
-        this.cuartos(this.ganadores(octavos.grupoA.resultados), this.ganadores(octavos.grupoB.resultados))
+        let clasificadosA = this.ganadores(octavos.grupoA.resultados)
+        let clasificadosB = this.ganadores(octavos.grupoB.resultados)
+        octavos.clasificados = [...clasificadosA, ...clasificadosB]
+        this.cuartos(clasificadosA, clasificadosB)
 
     }
 
@@ -45,7 +48,8 @@ export default class Eurocopa {
             },
             grupoB: {
                 participantes: grupoB
-            }
+            },
+            clasificados:[]
         }
 
         cuartos.grupoA.partidos = this.teamMatch(cuartos.grupoA.participantes)
@@ -54,8 +58,10 @@ export default class Eurocopa {
         cuartos.grupoB.resultados = this.partido(cuartos.grupoB.partidos)
 
         this.fases.cuartos = Object.assign(cuartos)
-
-        this.semifinal(this.ganadores(cuartos.grupoA.resultados), this.ganadores(cuartos.grupoB.resultados))
+        let clasificadosA = this.ganadores(cuartos.grupoA.resultados)
+        let clasificadosB = this.ganadores(cuartos.grupoB.resultados)
+        cuartos.clasificados = [...clasificadosA, ...clasificadosB]
+        this.semifinal(clasificadosA, clasificadosB)
     }
 
     semifinal(grupoA, grupoB) {
@@ -75,7 +81,11 @@ export default class Eurocopa {
 
         this.fases.semifinal = Object.assign(semifinal)
 
-        this.final(this.ganadores(semifinal.grupoA.resultados), this.ganadores(semifinal.grupoB.resultados))
+
+        let clasificadosA = this.ganadores(semifinal.grupoA.resultados)
+        let clasificadosB = this.ganadores(semifinal.grupoB.resultados)
+        semifinal.clasificados = [...clasificadosA, ...clasificadosB]
+        this.final(clasificadosA, clasificadosB)
 
         // funcion para decidir el tercer y cuarto puesto
         const semifinalistas = (resultadosA, resultadosB) => {
