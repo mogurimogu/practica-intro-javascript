@@ -56,6 +56,15 @@ export default class Eurocopa {
         this.semifinal(this.ganadores(cuartos.grupoA.resultados), this.ganadores(cuartos.grupoB.resultados))
     }
 
+
+
+
+
+
+
+
+
+
     semifinal(grupoA, grupoB) {
         const semifinal = {
             grupoA: {
@@ -63,7 +72,7 @@ export default class Eurocopa {
             },
             grupoB: {
                 participantes: grupoB
-            }
+            },
         }
 
         semifinal.grupoA.partidos = this.teamMatch(semifinal.grupoA.participantes)
@@ -74,16 +83,72 @@ export default class Eurocopa {
         this.fases.semifinal = Object.assign(semifinal)
 
         this.final(this.ganadores(semifinal.grupoA.resultados), this.ganadores(semifinal.grupoB.resultados))
+
+        const semifinalistas = (resultadosA, resultadosB) => {
+            const resultados = [...resultadosA, ...resultadosB]
+
+            resultados.forEach(puntuacion => {
+                const equipoA = Object.keys(puntuacion)[0]
+                const equipoB = Object.keys(puntuacion)[1]
+                const puntosEquipoA = Object.values(puntuacion)[0]
+                const puntosEquipoB = Object.values(puntuacion)[1]
+
+                if (puntosEquipoA > puntosEquipoB) {
+                    semifinal.semifinalistas = {
+                        ...semifinal.semifinalistas,
+                        [equipoB]: puntosEquipoB
+                    }
+                } else {
+                    semifinal.semifinalistas = {
+                        ...semifinal.semifinalistas,
+                        [equipoA]: puntosEquipoA
+                    }
+                }
+            });
+
+            const semifinalistaA = Object.keys(semifinal.semifinalistas)[0]
+            const semifinalistaB = Object.keys(semifinal.semifinalistas)[1]
+            const puntosSemifinalistaA = Object.values(semifinal.semifinalistas)[0]
+            const puntosSemifinalistaB = Object.values(semifinal.semifinalistas)[1]
+
+            if(puntosSemifinalistaA !== puntosSemifinalistaB){
+                if(puntosSemifinalistaA > puntosSemifinalistaB){
+                    semifinal.tercero = semifinalistaA
+                }else{
+                    semifinal.cuarto = semifinalistaA
+                }
+    
+                if(puntosSemifinalistaA < puntosSemifinalistaB){
+                    semifinal.tercero = semifinalistaB
+                }else{
+                    semifinal.cuarto = semifinalistaB
+                }    
+            }else{
+                semifinal.tercero = `${semifinalistaA} y ${semifinalistaB}`
+            }
+
+
+        }
+
+        semifinalistas(semifinal.grupoA.resultados, semifinal.grupoB.resultados)
     }
+
+
+
+
+
+
+
+
+
 
     final(equipoA, equipoB) {
         const final = {
-            participantes: [equipoA, equipoB]
+            participantes: [equipoA, equipoB],
+            resultados: []
         }
 
         final.partidos = this.teamMatch(final.participantes)
-        final.partidos = this.teamMatch(final.participantes)
-        final.resultados = this.partido(final.partidos)
         final.resultados = this.partido(final.partidos)
 
         this.fases.final = Object.assign(final)
@@ -91,6 +156,13 @@ export default class Eurocopa {
         const ganador = this.ganadores(final.resultados)
 
         final.ganador = ganador
+
+        if (Object.values(final.resultados[0])[0] > Object.values(final.resultados[0])[1]) {
+            final.segundo = Object.keys(final.resultados[0])[1]
+        } else {
+            final.segundo = Object.keys(final.resultados[0])[0]
+        }
+
     }
 
     teamMatch(participantes) {
@@ -116,7 +188,7 @@ export default class Eurocopa {
     juego(partido) {
         let resultados = {}
 
-        function jugar(partido){
+        function jugar(partido) {
             //añade los puntos por equipo
             for (let participante of partido) {
                 const goles = puntos()
@@ -125,7 +197,7 @@ export default class Eurocopa {
             // condicion para volver a jugar el partido en caso de empate
             if (Object.values(resultados)[0] === Object.values(resultados)[1]) {
                 jugar(partido)
-            }    
+            }
         }
 
         jugar(partido) //inicializa la funcion que juega el partido
@@ -133,13 +205,13 @@ export default class Eurocopa {
         return resultados;
     }
 
-    ganadores(resultados){
+    ganadores(resultados) {
         let ganadores = []
 
         for (const resultado of resultados) {
             if (Object.values(resultado)[0] > Object.values(resultado)[1]) {
                 ganadores = [...ganadores, Object.keys(resultado)[0]]
-            }else{
+            } else {
                 ganadores = [...ganadores, Object.keys(resultado)[1]]
             }
         }

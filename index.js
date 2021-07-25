@@ -70,7 +70,6 @@ console.log('')
 console.log('                  Playoffs - final                  ')
 console.log('====================================================')
 console.log('')
-console.log('---------------------- Grupo A ---------------------')
 
 console.log(participantesEuro.fases.final.resultados)
 
@@ -82,3 +81,9 @@ console.log('####################################################')
 console.log('')
 
 console.log(`El primer puesto es para: ${participantesEuro.fases.final.ganador}`)
+console.log(`El segundo puesto es para: ${participantesEuro.fases.final.segundo}`)
+console.log(`El tercer puesto es para: ${participantesEuro.fases.semifinal.tercero}`)
+
+if(participantesEuro.fases.semifinal.cuarto !== undefined){
+    console.log(`El cuarto puesto es para: ${participantesEuro.fases.semifinal.cuarto}`)
+}
