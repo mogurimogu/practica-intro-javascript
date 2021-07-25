@@ -1,23 +1,6 @@
 # Práctica - introducción a Javascript
 
-## EuroCup Simulator
-
-La eurocopa la disputan 24 equipos nacionales de fútbol y consta de dos fases: la fase de grupos
-y la fase de eliminatorias.
-
----
-
-## Fase grupos (opcional)
-
-Estos 24 equipos se agrupan en 6 grupos de 4 equipos cada uno. 
-
-Repartiremos los 24 equipos aleatoriamente en los 6 grupos. 
-
-Para cada grupo, se jugará una liga de una sola vuelta enfrentando a todos los equipos del grupo entre ellos.
-
-Tras jugar todos los partidos entre los equipos, pasarán los 2 primeros de cada grupo. De esta forma tendremos 12 equipos. Luego habrá que elegir los mejores 4 clasificados como terceros.
-
-## Fase de eliminatorias (playoff)
+## EuroCup Simulator - Fase de eliminatorias (playoff)
 
 La fase de eliminatorias la jugarán los 16 mejores equipos de la fase de grupos (los dos primeros de cada grupo más los 4 mejores terceros), en caso de implementar la fase de grupos (opcional). De no implementar la fase de grupos, serán 16 equipos seleccionados aleatoriamente.
 
@@ -28,23 +11,12 @@ La segunda ronda de la fase de eliminatorias (cuartos de final) enfrentará a lo
 Los equipos ganadores de las semifinales, pasarán a la final y los equipos perdedores jugarán un partido para establecer el tercer y cuarto puesto de la clasificación.
 
 ## Requisitos del programa mínimo
-- El programa comenzará indicando con un mensaje que “comienza el torneo”.
+- ✔️ El programa comenzará indicando con un mensaje que “comienza el torneo”.
 
-- El programa deberá mostrar los 16 equipos participantes en la fase de eliminatorias (playoff).
+- ✔️ El programa deberá mostrar los 16 equipos participantes en la fase de eliminatorias (playoff).
 
-- A continuación se deberán mostrar los resultados de los partidos en las diferentes rondas (octavos de final, cuartos de final y semifinales), indicando qué equipos se clasifican para la siguiente ronda (esto se mostrará desde octavos de final hasta semifinales).
+- ✔️ A continuación se deberán mostrar los resultados de los partidos en las diferentes rondas (octavos de final, cuartos de final y semifinales), ✔️ indicando qué equipos se clasifican para la siguiente ronda (esto se mostrará desde octavos de final hasta semifinales).
 
-- Opcional: Una vez finalizadas las semifinales, se mostrará el resultado del partido de tercer y cuarto puesto (que se juega entre equipos no clasificados para la final).
+- ✔️ Opcional: Una vez finalizadas las semifinales, se mostrará el resultado del partido de ✔️ tercer y ✔️ cuarto puesto (que se juega entre equipos no clasificados para la final).
 
-- Tras esto, se mostrará el resultado del partido de la final, anunciando posteriormente el equipo ganador como campeón del mundo.
-
-## Requisitos con la fase de grupos
-
-- Al arrancar el programa se deberá mostrar por pantalla la información de los equipos que hay en cada grupo y la planificación de partidos del mismo.
-  - Nombre del grupo
-  - Listado de los equipos (una en cada línea)
-- La asignación de los equipos a cada grupo se realizará de manera aleatoria.
-- Después se anunciará con un texto el comienzo del torneo
-- A continuación se mostrarán los resultados de los partidos y la clasificación de cada grupo tras el final de la primera jornada de partidos, después los de la segunda jornada, y finalmente los de la tercera jornada.
-- Una vez finalice la fase de grupos, se deberán anunciar el comienzo de la fase de eliminatorias.
-- A partir de aquí, se continuaría con los requisitos del programa mínimo
+- ✔️ Tras esto, se mostrará el resultado del partido de la final, anunciando posteriormente el equipo ganador como campeón del mundo.
