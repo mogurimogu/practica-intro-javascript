@@ -5,6 +5,7 @@ import {
 arrays();
 puntos();
 
+// Aquí comienza la eurocopa
 export default class Eurocopa {
     constructor(participantes, fases = {}) {
         this.participantes = participantes;
@@ -12,8 +13,9 @@ export default class Eurocopa {
         this.octavos(participantes)
     }
 
+//####################################################### Aquí se juega cada fase #######################################################
+
     octavos(equipos) {
-        equipos = equipos.shuffle() // Mezcla aleatoria de equipos
         let ganadores = []
 
         const octavos = {
@@ -56,15 +58,6 @@ export default class Eurocopa {
         this.semifinal(this.ganadores(cuartos.grupoA.resultados), this.ganadores(cuartos.grupoB.resultados))
     }
 
-
-
-
-
-
-
-
-
-
     semifinal(grupoA, grupoB) {
         const semifinal = {
             grupoA: {
@@ -84,9 +77,11 @@ export default class Eurocopa {
 
         this.final(this.ganadores(semifinal.grupoA.resultados), this.ganadores(semifinal.grupoB.resultados))
 
+        // funcion para decidir el tercer y cuarto puesto
         const semifinalistas = (resultadosA, resultadosB) => {
             const resultados = [...resultadosA, ...resultadosB]
 
+            // Selecciona y añade a un array aquellos que no han pasado a la final con sus respectivos resultados
             resultados.forEach(puntuacion => {
                 const equipoA = Object.keys(puntuacion)[0]
                 const equipoB = Object.keys(puntuacion)[1]
@@ -134,14 +129,6 @@ export default class Eurocopa {
     }
 
 
-
-
-
-
-
-
-
-
     final(equipoA, equipoB) {
         const final = {
             participantes: [equipoA, equipoB],
@@ -157,6 +144,7 @@ export default class Eurocopa {
 
         final.ganador = ganador
 
+        //así decidimos quien es el semifinalista
         if (Object.values(final.resultados[0])[0] > Object.values(final.resultados[0])[1]) {
             final.segundo = Object.keys(final.resultados[0])[1]
         } else {
@@ -165,6 +153,9 @@ export default class Eurocopa {
 
     }
 
+//####################################################### aquí es donde se aplican las funciones #######################################################
+    
+    //Empareja a los equipos para luego hacer los partidos
     teamMatch(participantes) {
         let teamMatch = []
         for (let i = 0; participantes.length > i; i += 2) {
@@ -173,10 +164,7 @@ export default class Eurocopa {
         return teamMatch
     }
 
-
-    //####################################################### A partir de aquí hacemos las jugadas #######################################################
-
-
+    //Devuelve cada valor de cada partido
     partido(partidos) {
         let resultados = []
         for (const partido of partidos) {
@@ -185,6 +173,7 @@ export default class Eurocopa {
         return resultados
     }
 
+    // Ejecucion de un partido
     juego(partido) {
         let resultados = {}
 
@@ -205,6 +194,7 @@ export default class Eurocopa {
         return resultados;
     }
 
+    //Esto es lo que decide quién pasa a la siguiente ronda
     ganadores(resultados) {
         let ganadores = []
 
