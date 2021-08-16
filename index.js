@@ -8,14 +8,21 @@ arrays();
 
 const euroTeams = ['España', 'Francia', 'Portugal', 'Alemania', 'Italia', 'Inglaterra', 'Finlandia', 'Grecia', 'Islandia', 'Noruega', 'Rusia', 'Suiza', 'Suecia', 'Bélgica', 'Dinamarca', 'Croacia', 'Irlanda', 'Lituania', 'Escocia', 'Serbia', 'Luxemburgo', 'Austria', 'Andorra', 'Malta'];
 
-const participantesEuro = new Eurocopa(euroTeams.shuffle().slice(0, 16));
+const equiposSeleccionados = euroTeams.shuffle().slice(0, 16)
+
+const participantesEuro = new Eurocopa(equiposSeleccionados);
 
 
 console.log('####################################################')
 console.log('---------------- Comienza el torneo ----------------')
 console.log('####################################################')
-console.log('')
 
+console.log('')
+console.log('----------------------------------------------------')
+console.log('--------- Los participantes del torneo son: --------')
+console.log(equiposSeleccionados)
+console.log('----------------------------------------------------')
+console.log('')
 
 
 console.log('                 Playoffs - Octavos                 ')
